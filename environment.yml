@@ -17,5 +17,6 @@ dependencies:
   - tqdm
   - jupyterlab
   - pip
+  - build
   - pip:
       - tensorflow
