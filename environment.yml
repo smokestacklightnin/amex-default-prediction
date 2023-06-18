@@ -1,0 +1,21 @@
+name: amex
+channels:
+  - conda-forge
+  # - nvidia
+  # - defaults
+dependencies:
+  - python=3.11
+  - numpy
+  - scipy
+  - spyder
+  - matplotlib
+  - pandas
+  - jupyter
+  - scikit-learn
+  - ipython
+  - pytest
+  - tqdm
+  - jupyterlab
+  - pip
+  - pip:
+      - tensorflow
