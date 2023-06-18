@@ -19,6 +19,7 @@ dependencies:
   - cudatoolkit=11.8.0
   - pip
   - build
+  - kaggle
   - pip:
       - nvidia-cudnn-cu11==8.6.0.163
       - tensorflow==2.12.*
