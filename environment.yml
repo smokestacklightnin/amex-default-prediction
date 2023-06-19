@@ -19,5 +19,4 @@ dependencies:
   - pip
   - build
   - kaggle
-  - pip:
-      - tensorflow
+  - jax
