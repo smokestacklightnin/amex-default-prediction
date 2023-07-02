@@ -6,11 +6,6 @@ import logging
 import kaggle
 import pathlib
 
-logging.basicConfig(
-    level=logging.DEBUG,
-)
-
-
 _competition_name = "amex-default-prediction"
 _module_name = "amex_default_prediction"
 _default_output_path = files(
@@ -24,7 +19,7 @@ _default_checksum_path = files(
 def _hash_file(filename, block_size=65536):
     filename = pathlib.Path(filename)
     h = hashlib.sha512()
-    logging.debug("Calculating hash of " + str(filename))
+    logging.debug("Calculating SHA512 hash of " + str(filename))
     with open(filename, "r") as file:
         while (chunk := file.read(block_size)) != "":
             h.update(chunk.encode("utf-8"))
@@ -41,14 +36,24 @@ def _verify_raw_data(path=None, checksum_path=None):
 
     try:
         checksums = dict()
+
         with open(checksum_path, "r") as checksum_file:
             for checksum_line in checksum_file:
                 ch, fn = checksum_line.split()
                 checksums.update({fn: ch})
 
         for filename, checksum in checksums.items():
+            logging.debug(
+                "Calculating hash of " + filename + " if it exists",
+            )
             if _hash_file(path.joinpath(filename)) != checksum:
                 return False
+            else:
+                logging.debug(
+                    "SHA512 hash of "
+                    + filename
+                    + " was successfully calculated and verified.",
+                )
     except FileNotFoundError:
         logging.warning("The raw data files were not found")
         return False
