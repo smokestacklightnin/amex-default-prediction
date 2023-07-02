@@ -12,11 +12,12 @@ logging.basicConfig(
 
 
 _competition_name = "amex-default-prediction"
+_module_name = "amex_default_prediction"
 _default_output_path = files(
-    _competition_name + ".data.raw_data",
+    _module_name + ".data.raw_data",
 )
 _default_checksum_path = files(
-    _competition_name + ".data.raw_data",
+    _module_name + ".data.raw_data",
 ).joinpath("sha512sums.txt")
 
 
@@ -81,7 +82,3 @@ def from_kaggle(path=None, checksum_path=None):
         logging.info("Successfully downloaded and extracted raw data files.")
     else:
         logging.info("All raw data files already downloaded")
-
-
-if __name__ == "__main__":
-    from_kaggle()
