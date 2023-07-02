@@ -1,5 +1,5 @@
 import logging
-import amex_default_prediction.data
+import amex_default_prediction
 
 
 logging.basicConfig(
@@ -8,6 +8,4 @@ logging.basicConfig(
 
 
 if __name__ == "__main__":
-    logging.info("Hello Kaggle")
-
     amex_default_prediction.data.download.from_kaggle()

@@ -1,1 +1,1 @@
-import amex_default_prediction as data
+import amex_default_prediction.data as data
