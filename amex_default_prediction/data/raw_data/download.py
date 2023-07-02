@@ -34,29 +34,31 @@ def _verify_raw_data(path=None, checksum_path=None):
         checksum_path = _default_checksum_path
     path, checksum_path = pathlib.Path(path), pathlib.Path(checksum_path)
 
-    try:
-        checksums = dict()
+    checksums = dict()
 
-        with open(checksum_path, "r") as checksum_file:
-            for checksum_line in checksum_file:
-                ch, fn = checksum_line.split()
-                checksums.update({fn: ch})
+    with open(checksum_path, "r") as checksum_file:
+        for checksum_line in checksum_file:
+            ch, fn = checksum_line.split()
+            checksums.update({fn: ch})
 
-        for filename, checksum in checksums.items():
+    for filename, checksum in checksums.items():
+        filepath = path.joinpath(filename)
+        logging.debug(
+            "Verifying " + str(filepath) + " if it exists",
+        )
+
+        if not filepath.is_file():
+            logging.debug(str(filepath) + " doesn't exist")
+            return False
+        if _hash_file(filepath) != checksum:
+            logging.debug("There was an error with the checksum.")
+            return False
+        else:
             logging.debug(
-                "Calculating hash of " + filename + " if it exists",
+                "SHA512 hash of "
+                + filename
+                + " was successfully calculated and verified.",
             )
-            if _hash_file(path.joinpath(filename)) != checksum:
-                return False
-            else:
-                logging.debug(
-                    "SHA512 hash of "
-                    + filename
-                    + " was successfully calculated and verified.",
-                )
-    except FileNotFoundError:
-        logging.warning("The raw data files were not found")
-        return False
 
     return True
 
