@@ -40,8 +40,9 @@ def _verify_raw_data(path=None, checksum_path=None):
     for filename, checksum in checksums.items():
         if _hash_file(path.joinpath(filename)) != checksum:
             return False
-        logging.info("All raw data files already downloaded")
+
     return True
+
 
 def from_kaggle(path=None, checksum_path=None):
     if path is None:
@@ -49,8 +50,7 @@ def from_kaggle(path=None, checksum_path=None):
     if checksum_path is None:
         checksum_path = _default_checksum_path
 
-    try:
-    except:
+    if not _verify_raw_data(path, checksum_path):
         logging.warning(
             "There was something wrong with the raw data files. Downlading and extracting again."
         )
@@ -58,6 +58,8 @@ def from_kaggle(path=None, checksum_path=None):
             kaggle.api.competition_download_files(
                 "amex-default-prediction", path=tmpdirname
             )
+    else:
+        logging.info("All raw data files already downloaded")
 
 
 if __name__ == "__main__":
