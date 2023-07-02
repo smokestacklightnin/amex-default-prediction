@@ -16,7 +16,7 @@ _default_checksum_path = files(
 ).joinpath("sha512sums.txt")
 
 
-def _hash_file(filename, block_size=65536):
+def _hash_file(filename, block_size=(2**16 - 1)):
     filename = pathlib.Path(filename)
     h = hashlib.sha512()
     logging.debug("Calculating SHA512 hash of " + str(filename))
