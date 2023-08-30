@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools-scm", "setuptools-git-versioning"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "amex-default-prediction"
+name = "amex_default_prediction"
 
 authors = [{name = "William Black",email = "wblack1845@gmail.com"}, {name = "Nhat Thanh Tran"}]
 requires-python = ">=3.11"
