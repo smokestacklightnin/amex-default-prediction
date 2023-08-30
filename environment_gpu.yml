@@ -19,6 +19,7 @@ dependencies:
   - pip
   - build
   - kaggle
+  - tensorflow
   # - black
   - pip:
       - -r requirements.txt
