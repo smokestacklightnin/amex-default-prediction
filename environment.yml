@@ -22,3 +22,5 @@ dependencies:
   - tensorflow
   - jax
   - flax
+  - numba
+  - pytest
