@@ -20,3 +20,4 @@ dependencies:
   - build
   - kaggle
   - jax
+  - flax
