@@ -12,11 +12,13 @@ class Simplest(nn.Module):
     def setup(self):
         self.dense_1 = nn.Dense(Simplest.nFeatures)
         self.relu_1 = nn.relu
+        self.dense_2 = nn.Dense(Simplest.nFeatures)
         # add more in the near future
 
     def __call__(self, x):
         x = self.dense_1(x)
         x = self.relu_1(x)
+        x = self.dense_2(x)
         return x
 
 
