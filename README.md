@@ -9,23 +9,26 @@ You mus set up the virtual environment, and do the `pip` installation to fully i
 
 #### With GPU
 
+In the project directory, run
+
 ```
-cd ~/dir/of/project
 conda env create -f environment_gpu.yml
 conda activate amex-gpu
 ```
 
 #### Without GPU
 
+In the project directory, run
+
 ```
-cd ~/dir/of/project
 conda env create -f environment.yml
 conda activate amex
 ```
 
 ### Development Installation
 
+With a conda environment installed and activated, run the following in the project directory to install the project:
+
 ```
-cd ~/dir/of/project
 pip install -e .
 ```
