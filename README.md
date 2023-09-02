@@ -32,3 +32,7 @@ With a conda environment installed and activated, run the following in the proje
 ```
 pip install -e .
 ```
+
+## Development Tests
+
+To run the software tests, simply run `$ pytest` from the root project directory.
