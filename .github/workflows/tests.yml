@@ -53,9 +53,9 @@ jobs:
       - name: Install Project
         id: install-project
         run: |
-          pip install .
+          pip3 install .
 
       - name: Run tests
         run: |
-          pip install pytest
+          pip3 install pytest
           pytest
