@@ -56,4 +56,5 @@ jobs:
           pip install .
 
       - name: Run tests
-        run: pytest
+        run: |
+          $CONDA/bin/pytest
