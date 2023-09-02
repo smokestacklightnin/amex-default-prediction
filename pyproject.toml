@@ -21,3 +21,7 @@ addopts = "-ra"
 testpaths = [
     "amex_default_prediction",
 ]
+
+[options]
+install_requires =
+    pytest

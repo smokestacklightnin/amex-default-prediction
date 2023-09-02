@@ -57,5 +57,4 @@ jobs:
 
       - name: Run tests
         run: |
-          mamba install pytest
           pytest
