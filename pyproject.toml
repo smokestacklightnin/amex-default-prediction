@@ -23,5 +23,6 @@ testpaths = [
 ]
 
 [options]
-install_requires =
-    "pytest"
+install_requires = [
+ 		 "pytest",
+]
