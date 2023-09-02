@@ -47,7 +47,7 @@ jobs:
       - name: Update Conda Environment
         id: update-env
         run: |
-          mamba update --file environment.yml
+          mamba env update --file environment.yml
         if: steps.cache-conda.outputs.cache-hit != 'true'
 
       - name: Install Project
