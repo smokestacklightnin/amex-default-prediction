@@ -24,4 +24,4 @@ testpaths = [
 
 [options]
 install_requires =
-    pytest
+    "pytest"
