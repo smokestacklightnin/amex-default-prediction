@@ -14,3 +14,10 @@ dynamic = [
 
 [tool.setuptools-git-versioning]
 enabled = true
+
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = [
+    "amex_default_prediction",
+]
