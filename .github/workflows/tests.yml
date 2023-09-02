@@ -53,7 +53,7 @@ jobs:
       - name: Install Project
         id: install-project
         run: |
-          pip install -e .
+          pip install .
 
       - name: Run tests
         run: pytest
