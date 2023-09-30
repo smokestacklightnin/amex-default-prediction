@@ -11,7 +11,7 @@ default_data_path = get_module_path("amex_default_prediction.data.raw_data")
 default_train_data_filename = "train_data_subset.csv"
 default_test_data_filename = "test_data_subset.csv"
 
-spark = SparkSession.builder.master("local[8]").getOrCreate()
+spark = SparkSession.builder.master("local[10]").getOrCreate()
 
 train_labels_full = (
     spark.read.format("csv")
@@ -49,7 +49,7 @@ def write_data_subset(df, filename, filepath=default_data_path):
         header=True,
     ).mode(
         "overwrite"
-    ).csv(str(filepath.joinpath(filename)), compression="bzip2")
+    ).csv(filepath.joinpath(filename).as_posix(), compression="none")
 
 
 if __name__ == "__main__":
