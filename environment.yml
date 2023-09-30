@@ -19,5 +19,8 @@ dependencies:
   - pip
   - build
   - kaggle
+  - tensorflow
   - jax
   - flax
+  - numba
+  - pytest

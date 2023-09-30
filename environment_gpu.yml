@@ -19,6 +19,9 @@ dependencies:
   - pip
   - build
   - kaggle
+  - tensorflow
+  - numba
+  - pytest
   # - black
   - pip:
       - -r requirements.txt
