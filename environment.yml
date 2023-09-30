@@ -24,3 +24,4 @@ dependencies:
   - flax
   - numba
   - pytest
+  - pyspark
