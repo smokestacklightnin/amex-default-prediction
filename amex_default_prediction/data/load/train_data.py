@@ -19,6 +19,20 @@ if _default_output_path.joinpath("train_labels.csv").is_file():
 else:
     warn("Full dataset csv file not found")
 
+_train_labels_subset = pd.concat(
+    (
+        pd.read_csv(
+            f,
+            index_col="customer_ID",
+            dtype={
+                "customer_ID": str,
+                "target": int,
+            },
+        )
+        for f in _default_output_path.joinpath("train_labels_subset").glob("*.csv")
+    )
+)
+
 
 def train_data(batch_size=10, shuffle_seed=None):
     dataset = tf.data.experimental.make_csv_dataset(
@@ -34,7 +48,10 @@ def train_data(batch_size=10, shuffle_seed=None):
 
 def train_data_subset(batch_size=10, shuffle_seed=None):
     dataset = tf.data.experimental.make_csv_dataset(
-        _default_output_path.joinpath("train_data_subset").glob("*.csv").as_posix(),
+        map(
+            lambda x: x.as_posix(),
+            _default_output_path.joinpath("train_data_subset").glob("*.csv"),
+        ),
         batch_size=batch_size,
         # label_name="customer_ID", # There are multiple rows with the same `customer_ID`
         shuffle=True,
@@ -48,19 +65,23 @@ def train_labels(customer_ID):
     return _train_labels.loc[customer_ID, "target"]
 
 
+def train_labels_subset(customer_ID):
+    return _train_labels_subset.loc[customer_ID, "target"]
+
+
 if __name__ == "__main__":
     print(_train_labels)
     print(
         train_labels(
             10
             * [
-                str("0000099d6bd597052cdcda90ffabf56573fe9d7c79be5fbac11a8ed792feb62a"),
+                str("00c617b58ce8c94b52a858c4886a7e4736a2373b6e841726421555f10e186763"),
             ],
         )
     )
 
     print(
-        train_labels("0000099d6bd597052cdcda90ffabf56573fe9d7c79be5fbac11a8ed792feb62a")
+        train_labels("00c617b58ce8c94b52a858c4886a7e4736a2373b6e841726421555f10e186763")
     )
 
-    print(train_data_subset().take(10))
+    print(train_data_subset().take(1))
