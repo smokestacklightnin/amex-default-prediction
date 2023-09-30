@@ -1,6 +1,7 @@
 import pandas as pd
 from amex_default_prediction.data.raw_data.download import _default_output_path
-from numba import vectorize
+
+# from numba import vectorize
 import tensorflow as tf
 import datetime
 
@@ -14,22 +15,16 @@ _train_labels = pd.read_csv(
 )
 
 
-# def train_data(batch_size=10, shuffle_seed=None):
-#     dataset = tf.data.experimental.make_csv_dataset(
-#         _default_output_path.joinpath("train_data.csv").as_posix(),
-#         batch_size=batch_size,
-#         label_name="customer_ID",
-#         shuffle=True,
-#         shuffle_seed=None,
-#     )
+def train_data(batch_size=10, shuffle_seed=None):
+    dataset = tf.data.experimental.make_csv_dataset(
+        _default_output_path.joinpath("train_data.csv").as_posix(),
+        batch_size=batch_size,
+        # label_name="customer_ID", # There are multiple rows with the same `customer_ID`
+        shuffle=True,
+        shuffle_seed=None,
+    )
 
-#     dataset.map(
-#         lambda x, *args: print(
-#             datetime.datetime.fromisoformat(str(x["S_2"][0])).toordinal(),
-#             *args,
-#         )
-#     )
-#     return dataset
+    return dataset
 
 
 def train_labels(customer_ID):
