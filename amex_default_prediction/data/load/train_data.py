@@ -5,7 +5,7 @@ from amex_default_prediction.data.raw_data.download import _default_output_path
 import tensorflow as tf
 import datetime
 from pathlib import Path
-from logging import warn
+from logging import warning
 
 if _default_output_path.joinpath("train_labels.csv").is_file():
     _train_labels = pd.read_csv(
@@ -17,7 +17,7 @@ if _default_output_path.joinpath("train_labels.csv").is_file():
         },
     )
 else:
-    warn("Full dataset csv file not found")
+    warning("Full dataset csv file not found")
 
 _train_labels_subset = pd.concat(
     (
